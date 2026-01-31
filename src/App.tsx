@@ -11,6 +11,7 @@ export default function App() {
   const [modalMode, setModalMode] = useState('fog'); // 'fog' | 'light'
   const [isFogging, setIsFogging] = useState(false);
   const [isLight, setIsLight] = useState(false);
+  const [isAutoMode, setIsAutoMode] = useState(true);
   const [toast, setToast] = useState('');
   const toastTimerRef = useRef(null);
 
@@ -52,12 +53,19 @@ export default function App() {
           <p className="text-slate-500 font-medium">ระบบควบคุมการปลูกมันฝรั่งแบบ Aeroponics</p>
         </div>
 
-        <button
-          onClick={() => onOpenSetting('fog')}
-          className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 text-slate-400 hover:text-emerald-600 transition-colors"
-        >
-          <Settings2 />
-        </button>
+        <div className="flex items-center gap-3">
+          <span className={`text-xs font-bold px-3 py-1 rounded-full ${isAutoMode ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
+            {isAutoMode ? 'AUTO' : 'MANUAL'}
+          </span>
+          <button
+            onClick={() => setIsAutoMode((prev) => !prev)}
+            className={`p-3 rounded-2xl shadow-sm border transition-colors ${isAutoMode ? 'bg-emerald-600 border-emerald-500 text-white hover:bg-emerald-700' : 'bg-white border-slate-100 text-slate-400 hover:text-amber-600'}`}
+            title={isAutoMode ? 'สลับเป็นโหมด Manual' : 'สลับเป็นโหมด Auto'}
+            aria-label={isAutoMode ? 'สลับเป็นโหมด Manual' : 'สลับเป็นโหมด Auto'}
+          >
+            <Settings2 />
+          </button>
+        </div>
       </header>
 
       <div className="dashboard-grid">
@@ -69,6 +77,7 @@ export default function App() {
           setIsLight={setIsLight}
           onOpenSetting={onOpenSetting}
           onNotify={showToast}
+          isAutoMode={isAutoMode}
         />
 
         <div className="lg:col-span-4 space-y-8">

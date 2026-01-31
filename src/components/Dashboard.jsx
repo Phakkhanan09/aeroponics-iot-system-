@@ -20,8 +20,9 @@ const SensorItem = ({ icon: Icon, label, value, unit, color, progress }) => (
   </div>
 );
 
-const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOpenSetting, onNotify }) => {
+const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOpenSetting, onNotify, isAutoMode }) => {
   const notify = onNotify || (() => {});
+  const manualDisabled = isAutoMode;
   return (
     <div className="lg:col-span-8 space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,8 +41,24 @@ const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOp
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <CustomButton variant={isFogging ? 'secondary' : 'primary'} icon={Play} onClick={() => setIsFogging(true)}>เริ่มพ่นหมอก</CustomButton>
-            <CustomButton variant="danger" icon={Square} onClick={() => setIsFogging(false)}>หยุดฉุกเฉิน</CustomButton>
+            <CustomButton
+              variant={isFogging ? 'secondary' : 'primary'}
+              icon={Play}
+              onClick={() => setIsFogging(true)}
+              disabled={manualDisabled}
+              className={manualDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+            >
+              เริ่มพ่นหมอก
+            </CustomButton>
+            <CustomButton
+              variant="danger"
+              icon={Square}
+              onClick={() => setIsFogging(false)}
+              disabled={manualDisabled}
+              className={manualDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+            >
+              หยุดฉุกเฉิน
+            </CustomButton>
             <CustomButton variant="secondary" className="btn-glass" onClick={() => { onOpenSetting('fog'); notify('เปิดหน้าตั้งเวลาพ่นหมอก'); }}>ตั้งค่าเวลา</CustomButton>
           </div>
         </div>
@@ -59,8 +76,24 @@ const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOp
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <CustomButton variant={isLight ? 'secondary' : 'primary'} icon={Play} onClick={() => setIsLight(true)}>เปิดไฟ</CustomButton>
-            <CustomButton variant="danger" icon={Square} onClick={() => setIsLight(false)}>ปิดไฟฉุกเฉิน</CustomButton>
+            <CustomButton
+              variant={isLight ? 'secondary' : 'primary'}
+              icon={Play}
+              onClick={() => setIsLight(true)}
+              disabled={manualDisabled}
+              className={manualDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+            >
+              เปิดไฟ
+            </CustomButton>
+            <CustomButton
+              variant="danger"
+              icon={Square}
+              onClick={() => setIsLight(false)}
+              disabled={manualDisabled}
+              className={manualDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+            >
+              ปิดไฟฉุกเฉิน
+            </CustomButton>
             <CustomButton variant="secondary" className="btn-glass" onClick={() => { onOpenSetting('light'); notify('เปิดหน้าตั้งเวลาไฟ'); }}>ตั้งเวลาเปิด-ปิดไฟ</CustomButton>
           </div>
         </div>
