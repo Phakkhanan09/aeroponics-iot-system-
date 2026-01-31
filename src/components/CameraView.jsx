@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Camera, RefreshCw, Maximize2, AlertCircle } from 'lucide-react';
+import React from 'react';
+import { Camera, AlertCircle } from 'lucide-react';
 
 const CameraView = ({ imageUrl, onCapture, isCapturing }) => {
   return (
@@ -15,8 +15,7 @@ const CameraView = ({ imageUrl, onCapture, isCapturing }) => {
         ) : (
           <div className="flex items-center justify-center h-full text-white/20">ยังไม่มีภาพถ่าย</div>
         )}
-        
-        {/* Shutter Effect ตอนกำลังโหลด */}
+
         {isCapturing && (
           <div className="absolute inset-0 bg-white/20 backdrop-blur-sm flex items-center justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
@@ -25,7 +24,7 @@ const CameraView = ({ imageUrl, onCapture, isCapturing }) => {
       </div>
 
       <div className="p-4">
-        <button 
+        <button
           onClick={onCapture}
           disabled={isCapturing}
           className={`w-full btn-base ${isCapturing ? 'bg-slate-300' : 'btn-primary'}`}
@@ -36,4 +35,5 @@ const CameraView = ({ imageUrl, onCapture, isCapturing }) => {
     </div>
   );
 };
+
 export default CameraView;
