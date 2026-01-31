@@ -22,7 +22,7 @@ const SensorItem = ({ icon: Icon, label, value, unit, color, progress }) => (
 
 const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOpenSetting, onNotify, isAutoMode }) => {
   const notify = onNotify || (() => {});
-  const manualDisabled = isAutoMode;
+  const manualDisabled = isAutoMode; /*ถ้าเปิดโหมด Auto ไว้ ปุ่มกดมือ (Manual) ทั้งหมดจะถูกปิดใช้งานทันที*/ 
   return (
     <div className="lg:col-span-8 space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -36,6 +36,7 @@ const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOp
             <h3 className="text-xl font-bold flex items-center gap-2">
               <Activity size={20} className="text-emerald-400" /> แผงควบคุมระบบพ่นหมอก
             </h3>
+                /*แผงควบคุมระบบพ่นหมอก (Fogging Control)*/
             <div className={`status-tag ${isFogging ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10 text-slate-400'}`}>
               {isFogging ? 'กำลังพ่นหมอก...' : 'ระบบสแตนด์บาย'}
             </div>
@@ -71,6 +72,7 @@ const Dashboard = ({ sensors, isFogging, setIsFogging, isLight, setIsLight, onOp
             <h3 className="text-xl font-bold flex items-center gap-2">
               <Activity size={20} className="text-emerald-400" /> แผงควบคุมระบบไฟ
             </h3>
+            /*แผงควบคุมระบบไฟ (Light Control)*/
             <div className={`status-tag ${isLight ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10 text-slate-400'}`}>
               {isLight ? 'เปิดไฟอยู่...' : 'ระบบสแตนด์บาย'}
             </div>
