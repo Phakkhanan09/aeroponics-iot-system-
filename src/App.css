@@ -1,42 +1,43 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@reference "tailwindcss";
+
+@layer components {
+  /* Layout */
+  .main-layout { @apply min-h-screen bg-[#f8fafc] text-slate-900 p-6 font-sans; }
+  .dashboard-grid { @apply max-w-7xl mx-auto grid grid-cols-1 gap-8; }
+
+  /* Sensor Cards */
+  .sensor-card { @apply bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-all; }
+  .sensor-icon-box { @apply p-3 rounded-2xl transition-transform group-hover:scale-110; }
+  .sensor-label { @apply text-xs font-bold text-slate-400 uppercase tracking-widest; }
+  .sensor-value { @apply text-3xl font-black text-slate-800; }
+  .progress-bar-bg { @apply w-full bg-slate-100 h-1.5 rounded-full overflow-hidden; }
+
+  /* Control Panel (Action Area) */
+  .action-panel { @apply bg-slate-900 rounded-[2.5rem] p-8 text-white relative overflow-hidden shadow-2xl shadow-slate-200; }
+  .panel-glow { @apply absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full; }
+  .status-tag { @apply px-4 py-1 rounded-full text-xs font-bold; }
+
+  /* Buttons (ย้ายสไตล์ปุ่มมานี่) */
+  .btn-base { @apply flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all duration-200 active:scale-95; }
+  .btn-primary { @apply bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg shadow-emerald-200; }
+  .btn-danger { @apply bg-rose-100 text-rose-600 hover:bg-rose-600 hover:text-white; }
+  .btn-secondary { @apply bg-slate-100 text-slate-600 hover:bg-slate-200; }
+  .btn-glass { @apply bg-white/10 text-white hover:bg-white/20 border border-white/10; }
+
+  /* Camera & Reports */
+  .camera-card { @apply bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-xl; }
+  .video-frame { @apply relative aspect-video bg-slate-900; }
+  .report-card { @apply bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100; }
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 768px) {
+  @layer components {
+    .main-layout { @apply p-10; }
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (min-width: 1024px) {
+  @layer components {
+    .dashboard-grid { @apply grid-cols-12; }
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
